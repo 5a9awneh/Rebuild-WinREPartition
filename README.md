@@ -1,7 +1,7 @@
 # Rebuild-WinREPartition
 
 <!-- BADGES:START -->
-[![License](https://img.shields.io/github/license/5a9awneh/Rebuild-WinREPartition)](LICENSE) [![PowerShell](https://img.shields.io/badge/PowerShell-5391FE?logo=powershell&logoColor=white)](https://learn.microsoft.com/en-us/powershell/) [![Windows](https://img.shields.io/badge/Windows-0078D6?logo=windows&logoColor=white)](https://www.microsoft.com/windows) [![Last Commit](https://img.shields.io/github/last-commit/5a9awneh/Rebuild-WinREPartition)](https://github.com/5a9awneh/Rebuild-WinREPartition/commits/main) [<img src="https://madebyhuman.iamjarl.com/badges/loop-white.svg" alt="Human in the Loop" height="20">](https://madebyhuman.iamjarl.com)
+[![License](https://img.shields.io/github/license/5a9awneh/Rebuild-WinREPartition)](LICENSE) [![PowerShell](https://img.shields.io/badge/PowerShell-5391FE?logo=powershell&logoColor=white)](https://learn.microsoft.com/en-us/powershell/) [![Windows](https://img.shields.io/badge/Windows-0078D6?logo=windows&logoColor=white)](https://www.microsoft.com/windows) [![Last Commit](https://img.shields.io/github/last-commit/5a9awneh/Rebuild-WinREPartition)](https://github.com/5a9awneh/Rebuild-WinREPartition/commits/main) [![Human in the Loop](https://img.shields.io/badge/human--in--the--loop-%E2%9C%93-brightgreen?style=flat)](https://github.com/5a9awneh/Rebuild-WinREPartition)
 <!-- BADGES:END -->
 
 Silently rebuilds the Windows Recovery Environment (WinRE) partition on Windows 11 devices where it is absent. Restores **Reset this PC**, **Autopilot Reset**, and all advanced recovery options with no user interaction and no reboot required.
