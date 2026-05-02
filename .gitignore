@@ -1,0 +1,20 @@
+# WIM files (supply manually — see README)
+*.wim
+
+# Log files (written at runtime)
+*.log
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE / editor artifacts
+.vscode/
+.idea/
+*.suo
+
+# Temp / backup files
+*.tmp
+*.bak
+*.orig
