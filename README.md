@@ -51,6 +51,10 @@ flowchart TD
     M --> N{Verification passed?}
     N -- No --> O([Exit 1 — verification failed])
     N -- Yes --> P([Exit 0 — WinRE rebuilt ✓])
+    classDef success fill:#2d6a2d,color:#fff,stroke:#1a3d1a
+    classDef failure fill:#8b1a1a,color:#fff,stroke:#5a0d0d
+    class C,E,P success
+    class G,I,O failure
 ```
 
 ---
