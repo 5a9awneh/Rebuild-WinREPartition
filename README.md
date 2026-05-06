@@ -8,6 +8,51 @@ Silently rebuilds the Windows Recovery Environment (WinRE) partition on Windows 
 
 Designed for bulk deployment via **Intune Win32 app**. Also runs locally via `Run-Local.bat`.
 
+**On an affected device, `reagentc /info` reports:**
+
+```
+Windows RE status:         Disabled
+Windows RE location:
+BCD identifier:            00000000-0000-0000-0000-000000000000
+Windows RE Version:        0.0.0.0
+```
+
+**`WinRE-Fix.log` — after running `Install.ps1`:**
+
+```
+[INFO] === WinRE-Fix started | Host: [DEVICE] ===
+[INFO] OS Build: 26200
+[INFO] winre.wim size: 643MB - OK
+[INFO] Recovery partition already exists (Partition 4) - skipping shrink/create
+[INFO] Partition 4 mounted at C:\WinREAccess
+[INFO] Copying winre.wim to C:\WinREAccess\Recovery\WindowsRE ...
+[INFO] Copy complete
+[INFO] Running reagentc /setreimage...
+[INFO]   [reagentc] REAGENTC.EXE: Operation Successful.
+[INFO] Running reagentc /enable...
+[INFO]   [reagentc] REAGENTC.EXE: Operation Successful.
+[INFO] SUCCESS: WinRE enabled on partition 4
+```
+
+```mermaid
+flowchart TD
+    A([Start]) --> B{Build ≥ 26100?}
+    B -- No --> C([Exit 0 — unsupported build])
+    B -- Yes --> D{WinRE enabled on dedicated partition?}
+    D -- Yes --> E([Exit 0 — already healthy])
+    D -- No --> F{Orphaned ~1 GB partition present?}
+    F -- Yes --> G([Exit 1 — manual cleanup needed])
+    F -- No --> H{C: has ≥ 1 GB shrinkable space?}
+    H -- No --> I([Exit 1 — insufficient space])
+    H -- Yes --> J[Disable WinRE]
+    J --> K[DiskPart: shrink C: 1 GB, create & format Recovery partition]
+    K --> L[Mount, copy winre.wim, register & enable WinRE, unmount]
+    L --> M[Set GPT GUID, hide partition]
+    M --> N{Verification passed?}
+    N -- No --> O([Exit 1 — verification failed])
+    N -- Yes --> P([Exit 0 — WinRE rebuilt ✓])
+```
+
 ---
 
 ## ⚠️ Before You Start — Supplying `winre.wim`
